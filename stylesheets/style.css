@@ -37,32 +37,14 @@ body {
 /* Sidebar Styles */
 .sidenav {
   height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
+  float: left;
+  width: 250px;
+  max-width: 50%;
   background-color: var(--sidebar-bg);
-  overflow-x: hidden;
+  overflow-y: auto;
   /*transition: 0.5s;*/
-  padding-top: 60px;
-}
-
-.sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-
-.sidenav .closebtn:hover {
-    font-weight: 100;
-    filter: brightness(50%);
-}
-
-#sidebar {
-    color: white;
+  display: none;
+  color: white;
 }
 
 .sidenav body {
@@ -158,4 +140,18 @@ h7 {
 .btn-outline-info:hover {
     background-color: #86B8CC;
     border-color: #86B8CC;
+}
+
+#container {
+    width: 100%;
+    overflow: auto;
+    height: calc(100vh - 66px);
+}
+
+.content {
+  height: 100%;
+  width: 100%
+  float: left;
+  overflow-y: auto;
+  /*transition: 0.5s;*/
 }
