@@ -7,7 +7,19 @@
     border-width: 2px
 }
 .linkBox {
-    width: 35%;
+    width: 42.5%;
     float: left;
-    margin-left: 10%;
+    margin-left: 5%;
+    border: solid 1.5px #86B8CC;
+    height: 100%;
+    padding: 2px;
+    color: #86B8CC;
+}
+.cardLink {
+    color: #86B8CC;
+}
+a:hover.linkBox {
+    color: #DCECEF;
+    border-color: #DCECEF;
+    background-color: #86B8CC;
 }
