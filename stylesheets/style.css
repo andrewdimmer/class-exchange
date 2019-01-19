@@ -1,7 +1,29 @@
 body {
     font-family: "Arial";
+    --sidebar-bg: black;
+    --primary-color: lightblue;
+    --nav-text-color: black;
+    
+    /* No text select */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
+.navbar {
+    background-color: var(--primary-color);
+    color: var(--nav-text-color);
+}
+
+.navbar h1 {
+    font-size: 15pt;
+    font-weight: 50;
+}
+
+/* Sidebar Styles */
 .sidenav {
   height: 100%;
   width: 0;
@@ -9,23 +31,10 @@ body {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #111;
+  background-color: var(--sidebar-bg);
   overflow-x: hidden;
-  transition: 0.5s;
+  /*transition: 0.5s;*/
   padding-top: 60px;
-}
-
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
-}
-
-.sidenav a:hover {
-  color: #f1f1f1;
 }
 
 .sidenav .closebtn {
@@ -36,11 +45,29 @@ body {
   margin-left: 50px;
 }
 
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+.sidenav .closebtn:hover {
+    font-weight: 100;
+    filter: brightness(50%);
 }
 
 #sidebar {
     color: white;
+}
+
+.sidenav body {
+    color: white;
+}
+
+.sidenav h1 {
+    font-size: 18pt;
+    padding-left:5%;
+}
+
+.element {
+    padding-left: 15%;
+    color: grey;
+}
+
+.element:hover {
+    color: lightblue;
 }

@@ -20,14 +20,13 @@
     </head>
     
     <body>
-        <!-- example <div include-html="../template/sidebar.html"></div> -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <!--Sidebar-->
+        <!-- Slide-out nav -->
+        <nav class="navbar">
             <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
             
             <div id="mySidenav" class="sidenav">
                     <div id = "sidebar">
-                    <span style="font-size:30px;cursor:pointer" onclick="closeNav()">X</span>    
+                    <div class = "closebtn" onclick="closeNav()">X</div>   
                     <h1>DMs</h1>
                         <div id = "dms" class = "element">Craig</div>
                         <div id = "dms" class = "element">Andrew</div>
@@ -39,7 +38,7 @@
                     </div>
             </div>            
             <!--Title-->
-            <a class="navbar-brand" href="#">ClassOverflow</a>
+            <h1>ClassOverflow</h1>
 
             <!--Profile-->
             <input type="image" src="assets/profile.png" alt="Profile">
@@ -50,9 +49,8 @@
             includeHTML();
             
             function openNav() {
-              document.getElementById("mySidenav").style.width = "250px";
+              document.getElementById("mySidenav").style.width = "50%";
             }
-
             function closeNav() {
               document.getElementById("mySidenav").style.width = "0";
             }            

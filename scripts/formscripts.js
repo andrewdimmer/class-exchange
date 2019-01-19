@@ -1,14 +1,15 @@
 function addClass() {
     var className = "Test Class"
     var classCategories = ["Homework", "Exams"];
-    cID = "c-" + generateID(5);
+    var userEmail = "adimmer@oakland.edu";
+    var cID = "c-" + generateID(5);
     var classInfo = {
         "id": cID,
         "name": className,
         "categoryName": classCategories,
         "announcements": [],
-        "teachers": [],
-        "students": []
+        "users": [userEmail],
+        "joinCode": Math.floor(Math.random()*10000)
     }
     for (var cat = 0; cat < classCategories.length; cat++) {
         classInfo["cat" + cat + "posts"] = [];
@@ -33,7 +34,7 @@ function addPost() {
     var userEmail = "adimmer@oakland.edu";
     var parentDoc = "c-IH2BA";
     var parentField = "announcements";
-    pID = "p-" + generateID(10);
+    var pID = "p-" + generateID(10);
     var postInfo = {
         "id": pID,
         "title": postName,
@@ -65,4 +66,45 @@ function generateID(length) {
         id += allIDChars[Math.floor(Math.random()*allIDChars.length)];
     }
     return id;
+}
+
+function joinClass() {
+    var id = "4S62A";
+    var joinCode = 6218;
+    var userEmail = "adimmer@oakland.edu";
+    var classJoined = joinClassFirebase(id, joinCode, userEmail);
+    console.log(classJoined);
+    classJoined.then(function(results){
+        if (results[0] == 0) {
+            console.log("Class Joined Successfully!");
+        } else if (results[0] == 1) {
+            console.log("Unable to find class!");
+        } else if (results[0] == 2) {
+            console.log("Join code does not match!");
+        } else if (results[0] == 3) {
+            console.log("You are already a member of that class!");
+        } else {
+            console.log("Unknown error");
+        }
+    },function(error){
+        console.err(error);
+    })    
+}
+
+function followTopic(id, userEmail) {
+    var classJoined = followTopicFirebase(id, userEmail);
+    console.log(classJoined);
+    classJoined.then(function(results){
+        if (results[0] == 0) {
+            console.log("Topic Followed Successfully!");
+        } else if (results[0] == 1) {
+            console.log("Unable to find user!");
+        } else if (results[0] == 2) {
+            console.log("You are already following that topic!");
+        } else {
+            console.log("Unknown error");
+        }
+    },function(error){
+        console.err(error);
+    })    
 }
