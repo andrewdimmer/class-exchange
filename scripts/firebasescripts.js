@@ -73,56 +73,55 @@ function createClass(userEmail, cID, classInfo) {
     return Promise.all([one,two]);
 }
 
-function createPost(userEmail, postInfo, parentDoc, parentField) {
-    pID = "p-" /*+ generateID(5)*/;
+function createPost(pID, postInfo, parentDoc, parentField) {
     var newPost = db.collection("posts").doc(pID);
     console.log(pID + " reserved");
-    var one = newClass.get().then(function(doc) {
+    var two;
+    var one = newPost.get().then(function(doc) {
         if (doc.exists) {
             console.log(pID + " exists");
-            return null;
+            return 1;
         } else {
             console.log(pID + " does not exist");
-            var classData = {
-                "id": pID,
-                "title": className,
-                "categoryName": classCategories,
-                "announcements": []
-            }
-            for (var cat = 0; cat < classCategories.length; cat++) {
-                classData["cat" + cat + "posts"] = [];
-            }
-            newClass.set(classData)
+            newPost.set(postInfo)
             .then(function() {
                 console.log("Document successfully written!");
-                var teacher = db.collection("users").doc(userEmail);
-                var two = teacher.get().then(function(doc) {
+                var parent;
+                if (parentDoc.indexOf("c-") > -1) {
+                    parent = db.collection("classes").doc(parentDoc);
+                } else if(parentDoc.indexOf("p-") > -1) {
+                    parent = db.collection("posts").doc(parentDoc);
+                } else if(parentDoc.indexOf("t-") > -1) {
+                    parent = db.collection("topics").doc(parentDoc);
+                }
+                two = parent.get().then(function(doc) {
                     if (doc.exists) {
                         // console.log("Document data:", doc.data());
-                        teacherData = doc.data();
-                        teacherData.classes.push(cID);
-                        teacherData.classes.sort();
-                        teacher.set(teacherData)
+                        parentData = doc.data();
+                        parentData[parentField].unshift(pID);
+                        parent.set(parentData)
                         .then(function() {
                             console.log("Document successfully written!");
                         })
                         .catch(function(error) {
                             console.error("Error writing document: ", error);
                         });
+                        return 0;
                     } else {
-                        console.log("Error: teacher does not exist!")
+                        console.log("Error: parent does not exist!");
+                        return 1;
                     }
                 }).catch(function(error) {
                     console.log("Error getting document:", error);
                 });
-
-                return Promise.all([one, two]).then(function() { console.log("All complete!"); });
             })
             .catch(function(error) {
                 console.error("Error writing document: ", error);
             });
+            return 0;
         }
     }).catch(function(error) {
         console.log("Error getting document:", error);
     });
+    return Promise.all([one,two]);
 }
