@@ -5,7 +5,11 @@
 .postContent {
     background-color: #FCFCFC;
     border-color: #DCECEF;
-    border-width: 2px
+    /*border-color: radial-gradient(#DCECEF, #EDEDED);*/
+    border-width: 3px;
+    border-radius: 15px;
+    width: 95%; 
+    margin-left: 2.5%;
 }
 
 /*.linkBox {
@@ -31,17 +35,40 @@ a:hover.linkBox {
 */
 
 h5.card-title {
-    font-size: 35px;
+    font-size: 25px;
 }
 
 img {
     border-radius: 50%;
     margin-right: 7px;
 }
+
 a {
-    color: #86B8CC
+    color: #86B8CC;
 }
 
 a:hover {
-    
+    color: #6E97A7;
+}
+
+h6 {
+    margin-bottom: 0px;
+}
+
+h7 {
+    font-size: 14px;
+}
+
+.edit {
+    float: right;
+}
+
+.btn-outline-info {
+    border-color: #86B8CC;
+    color: #86B8CC;
+}
+
+.btn-outline-info:hover {
+    background-color: #86B8CC;
+    border-color: #86B8CC;
 }
