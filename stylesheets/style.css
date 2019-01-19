@@ -155,3 +155,15 @@ h7 {
   overflow-y: auto;
   /*transition: 0.5s;*/
 }
+
+.floatRight {
+    float: right;
+}
+
+.floatLeft {
+    float: left;
+}
+
+.inline {
+    display: inline;
+}
