@@ -1,12 +1,14 @@
 .genericPost {
     background-color: #EDEDED;
 }
+
 .postContent {
     background-color: #FCFCFC;
     border-color: #DCECEF;
     border-width: 2px
 }
-.linkBox {
+
+/*.linkBox {
     width: 42.5%;
     float: left;
     margin-left: 5%;
@@ -15,11 +17,31 @@
     padding: 2px;
     color: #86B8CC;
 }
+
 .cardLink {
     color: #86B8CC;
 }
+
 a:hover.linkBox {
     color: #DCECEF;
     border-color: #DCECEF;
     background-color: #86B8CC;
+}
+"""This is bad CSS that is no longer needed, but I want to keep it as a style reference for future pages."""
+*/
+
+h5.card-title {
+    font-size: 35px;
+}
+
+img {
+    border-radius: 50%;
+    margin-right: 7px;
+}
+a {
+    color: #86B8CC
+}
+
+a:hover {
+    
 }
