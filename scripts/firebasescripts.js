@@ -45,7 +45,6 @@ function createClass(userEmail, cID, classInfo) {
                         // console.log("Document data:", doc.data());
                         teacherData = doc.data();
                         teacherData.classes.push(cID);
-                        teacherData.classes.sort();
                         teacher.set(teacherData)
                         .then(function() {
                             console.log("Document successfully written!");
@@ -119,6 +118,60 @@ function createPost(pID, postInfo, parentDoc, parentField) {
                 console.error("Error writing document: ", error);
             });
             return 0;
+        }
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
+    });
+    return Promise.all([one,two]);
+}
+
+function joinClassFirebase(classID, joinCode, userEmail) {
+    var classToJoin = db.collection("classes").doc("c-" + classID);
+    var two;
+    var one = classToJoin.get().then(function(doc) {
+        if (doc.exists) {
+            console.log("Adding " + userEmail + " to c-" + classID);
+            classData = doc.data();
+            if (classData.joinCode != joinCode) {
+                return 2;
+            }
+            if (classData.users.indexOf(userEmail) > -1) {
+                return 3;
+            }
+            classData.users.push(userEmail);
+            classToJoin.set(classData)
+            .then(function() {
+                console.log("Document successfully written!");
+                var user = db.collection("users").doc(userEmail);
+                two = user.get().then(function(doc) {
+                    if (doc.exists) {
+                        // console.log("Document data:", doc.data());
+                        console.log("Adding c-" + classID + " to " + userEmail);
+                        userData = doc.data();
+                        userData.classes.push("c-" + classID);
+                        user.set(userData)
+                        .then(function() {
+                            console.log("Document successfully written!");
+                        })
+                        .catch(function(error) {
+                            console.error("Error writing document: ", error);
+                        });
+                        return 0;
+                    } else {
+                        console.log("Error: user does not exist!");
+                        return 1;
+                    }
+                }).catch(function(error) {
+                    console.log("Error getting document:", error);
+                });
+            })
+            .catch(function(error) {
+                console.error("Error writing document: ", error);
+            });
+            return 0;
+        } else {
+            console.log("Unable to find c-" + classID);
+            return 1;
         }
     }).catch(function(error) {
         console.log("Error getting document:", error);
