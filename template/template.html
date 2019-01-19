@@ -22,11 +22,22 @@
     <body>
         <!-- example <div include-html="../template/sidebar.html"></div> -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <!--Hamburger-->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <!--Sidebar-->
+            <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
             
+            <div id="mySidenav" class="sidenav">
+                    <div id = "sidebar">
+                    <span style="font-size:30px;cursor:pointer" onclick="closeNav()">X</span>    
+                    <h1>DMs</h1>
+                        <div id = "dms" class = "element">Craig</div>
+                        <div id = "dms" class = "element">Andrew</div>
+                    <h1>Classes</h1>
+                        <div id = "classes" class = "element">Chemistry</div>
+                        <div id = "classes" class = "element">Physics</div>
+                    <h1>Global</h1>
+                        <div id = "global" class = "element">Computer Science</div>
+                    </div>
+            </div>            
             <!--Title-->
             <a class="navbar-brand" href="#">ClassOverflow</a>
 
@@ -37,6 +48,14 @@
     <footer>
         <script>
             includeHTML();
+            
+            function openNav() {
+              document.getElementById("mySidenav").style.width = "250px";
+            }
+
+            function closeNav() {
+              document.getElementById("mySidenav").style.width = "0";
+            }            
         </script>
     </footer>
 </html>
