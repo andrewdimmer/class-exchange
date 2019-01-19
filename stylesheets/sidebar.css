@@ -1,0 +1,17 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+h1 {
+    font-size: 18pt;
+}
+
+.element {
+    padding-left: 10px;
+    color: grey;
+}
+
+.element:hover {
+    color: lightblue;
+}
