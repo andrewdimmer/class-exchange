@@ -178,3 +178,29 @@ function joinClassFirebase(classID, joinCode, userEmail) {
     });
     return Promise.all([one,two]);
 }
+
+function followTopicFirebase(topicID, userEmail) {
+    var user = db.collection("users").doc(userEmail);
+    var one = user.get().then(function(doc) {
+        if (doc.exists) {
+            // console.log("Document data:", doc.data());
+            console.log("Adding t-" + topicID + " to " + userEmail);
+            userData = doc.data();
+            userData.classes.push("t-" + topicID);
+            user.set(userData)
+            .then(function() {
+                console.log("Document successfully written!");
+            })
+            .catch(function(error) {
+                console.error("Error writing document: ", error);
+            });
+            return 0;
+        } else {
+            console.log("Unable to find user " + userEmail);
+            return 1;
+        }
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
+    });
+    return Promise.all([one]);
+}

@@ -76,13 +76,31 @@ function joinClass() {
     console.log(classJoined);
     classJoined.then(function(results){
         if (results[0] == 0) {
-            console.log("Class Added Successfully!");
+            console.log("Class Joined Successfully!");
         } else if (results[0] == 1) {
             console.log("Unable to find class!");
         } else if (results[0] == 2) {
             console.log("Join code does not match!");
         } else if (results[0] == 3) {
             console.log("You are already a member of that class!");
+        } else {
+            console.log("Unknown error");
+        }
+    },function(error){
+        console.err(error);
+    })    
+}
+
+function followTopic(id, userEmail) {
+    var classJoined = followTopicFirebase(id, userEmail);
+    console.log(classJoined);
+    classJoined.then(function(results){
+        if (results[0] == 0) {
+            console.log("Topic Followed Successfully!");
+        } else if (results[0] == 1) {
+            console.log("Unable to find user!");
+        } else if (results[0] == 2) {
+            console.log("You are already following that topic!");
         } else {
             console.log("Unknown error");
         }
