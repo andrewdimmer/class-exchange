@@ -30,6 +30,10 @@ body {
     width: 50px;
 }
 
+.creation {
+    max-width: 450px;
+}
+
 /* Sidebar Styles */
 .sidenav {
   height: 100%;
