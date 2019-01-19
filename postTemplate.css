@@ -38,7 +38,7 @@ h5.card-title {
     font-size: 25px;
 }
 
-img {
+.profilePicture {
     border-radius: 50%;
     margin-right: 7px;
 }

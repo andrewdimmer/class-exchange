@@ -78,3 +78,80 @@ body {
 .element:hover {
     color: lightblue;
 }
+
+/*This is the CSS from the post page.*/
+
+.genericPost {
+    background-color: #EDEDED;
+}
+
+.postContent {
+    background-color: #FCFCFC;
+    border-color: #DCECEF;
+    /*border-color: radial-gradient(#DCECEF, #EDEDED);*/
+    border-width: 3px;
+    border-radius: 15px;
+    width: 95%; 
+    margin-left: 2.5%;
+}
+
+/*.linkBox {
+    width: 42.5%;
+    float: left;
+    margin-left: 5%;
+    border: solid 1.5px #86B8CC;
+    height: 100%;
+    padding: 2px;
+    color: #86B8CC;
+}
+
+.cardLink {
+    color: #86B8CC;
+}
+
+a:hover.linkBox {
+    color: #DCECEF;
+    border-color: #DCECEF;
+    background-color: #86B8CC;
+}
+"""This is bad CSS that is no longer needed, but I want to keep it as a style reference for future pages."""
+*/
+
+h5.card-title {
+    font-size: 25px;
+}
+
+.profilePicture {
+    border-radius: 50%;
+    margin-right: 7px;
+}
+
+a {
+    color: #86B8CC;
+}
+
+a:hover {
+    color: #6E97A7;
+}
+
+h6 {
+    margin-bottom: 0px;
+}
+
+h7 {
+    font-size: 14px;
+}
+
+.edit {
+    float: right;
+}
+
+.btn-outline-info {
+    border-color: #86B8CC;
+    color: #86B8CC;
+}
+
+.btn-outline-info:hover {
+    background-color: #86B8CC;
+    border-color: #86B8CC;
+}
