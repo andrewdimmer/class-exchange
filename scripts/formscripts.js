@@ -28,6 +28,51 @@ function addClass() {
     })
 }
 
+function addTopic() {
+    var topicName = "Test Class";
+    var topicParentID = "t-DYSD8";
+    var topicType = "super";
+    var tID = "t-" + generateID(5);
+    var topicInfo = {
+        "id": tID,
+        "name": topicName,
+        "parentID": topicParentID,
+        "type": topicType
+    }
+    if (topicType.indexOf("super") > -1) {
+        topicInfo["subTopics"] = [];
+    } else if (topicType.indexOf("regular") > -1) {
+        topicInfo["posts"] = [];
+    } else {
+        console.error("Unknown topic type");
+    }
+    if (topicParentID == null) {
+        topicInfo["fullPath"] = [tID];
+    } else {
+        getTopicJSON(topicParentID).then(function(result) {
+            if (result == null) {
+                console.log("Parent does not exist");
+                topicInfo["fullPath"] = [tID];
+            } else {
+                
+                topicInfo["fullPath"] = (result[0].fullPath).push(tID);
+            }
+        })
+    }
+    var topicCreated = createTopic(tID, topicInfo, topicParentID);
+    console.log(topicCreated);
+    topicCreated.then(function(results){
+        if (results[0] == 0) {
+            console.log("Class Added Successfully!");
+        } else {
+            console.log("Duplicate ID. Trying again...");
+            addClass();
+        }
+    },function(error){
+        console.err(error);
+    })
+}
+
 function addPost() {
     var postName = "Test Post";
     var postContent = "This is the content for the test post!";

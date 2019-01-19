@@ -72,6 +72,53 @@ function createClass(userEmail, cID, classInfo) {
     return Promise.all([one,two]);
 }
 
+function createTopic(tID, topicInfo, parentID) {
+    var newTopic = db.collection("topics").doc(tID);
+    console.log(tID + " reserved");
+    var two;
+    var one = newTopic.get().then(function(doc) {
+        if (doc.exists) {
+            console.log(tID + " exists");
+            return 1;
+        } else {
+            console.log(tID + " does not exist");
+            newTopic.set(topicInfo)
+            .then(function() {
+                console.log("Document successfully written!");
+                if (parentID != null) {
+                    var parent = db.collection("topics").doc(parentID);
+                    two = parent.get().then(function(doc) {
+                        if (doc.exists) {
+                            // console.log("Document data:", doc.data());
+                            parentData = doc.data();
+                            parentData.subTopics.push(tID);
+                            parent.set(parentData)
+                            .then(function() {
+                                console.log("Document successfully written!");
+                            })
+                            .catch(function(error) {
+                                console.error("Error writing document: ", error);
+                            });
+                            return 0;
+                        } else {
+                            console.log("Error: parent does not exist!");
+                            return 1;
+                        }
+                    }).catch(function(error) {
+                        console.log("Error getting document:", error);
+                    });
+                }
+            }).catch(function(error) {
+                console.error("Error writing document: ", error);
+            });
+            return 0;
+        }
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
+    });
+    return Promise.all([one,two]);
+}
+
 function createPost(pID, postInfo, parentDoc, parentField) {
     var newPost = db.collection("posts").doc(pID);
     console.log(pID + " reserved");
@@ -199,6 +246,54 @@ function followTopicFirebase(topicID, userEmail) {
             console.log("Unable to find user " + userEmail);
             return 1;
         }
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
+    });
+    return Promise.all([one]);
+}
+
+function getTopicJSON(tID) {
+    var topic = db.collection("topics").doc(tID);
+    var one = topic.get().then(function(doc) {
+        if (doc.exists) {
+            console.log("Document data:", doc.data());
+            return doc.data();
+        } else {
+            return null;
+        }
+        
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
+    });
+    return Promise.all([one]);
+}
+
+function getClassJSON(cID) {
+    var classToGet = db.collection("classes").doc(cID);
+    var one = classToGet.get().then(function(doc) {
+        if (doc.exists) {
+            console.log("Document data:", doc.data());
+            return doc.data();
+        } else {
+            return null;
+        }
+        
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
+    });
+    return Promise.all([one]);
+}
+
+function getPostJSON(pID) {
+    var post = db.collection("posts").doc(tID);
+    var one = post.get().then(function(doc) {
+        if (doc.exists) {
+            console.log("Document data:", doc.data());
+            return doc.data();
+        } else {
+            return null;
+        }
+        
     }).catch(function(error) {
         console.log("Error getting document:", error);
     });

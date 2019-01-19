@@ -1,0 +1,30 @@
+<nav class="navbar">
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+
+    <div id="mySidenav" class="sidenav">
+            <div id = "sidebar">
+            <div class = "closebtn" onclick="closeNav()">X</div>   
+            <h1>DMs</h1>
+                <div id = "dms" class = "element">Craig</div>
+                <div id = "dms" class = "element">Andrew</div>
+            <h1>Classes</h1>
+                <div id = "classes" class = "element">Chemistry</div>
+                <div id = "classes" class = "element">Physics</div>
+            <h1>Global</h1>
+                <div id = "global" class = "element">Computer Science</div>
+            </div>
+    </div>            
+    <!--Title-->
+    <h1>ClassOverflow</h1>
+
+    <!--Profile-->
+    <input type="image" src="../images/Profile%20Picture%20Placeholder.jpg" alt="Profile" class = "profilepic">
+</nav>
+<script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "50%";
+    }
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }    
+</script>
