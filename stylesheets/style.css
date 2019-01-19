@@ -1,5 +1,8 @@
 body {
     font-family: "Arial";
+    --sidebar-bg: black;
+    --primary-color: lightblue;
+    --nav-text-color: black;
     
     /* No text select */
     -webkit-touch-callout: none;
@@ -10,6 +13,16 @@ body {
     user-select: none;
 }
 
+.navbar {
+    background-color: var(--primary-color);
+    color: var(--nav-text-color);
+}
+
+.navbar h1 {
+    font-size: 15pt;
+    font-weight: 50;
+}
+
 /* Sidebar Styles */
 .sidenav {
   height: 100%;
@@ -18,7 +31,7 @@ body {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #111;
+  background-color: var(--sidebar-bg);
   overflow-x: hidden;
   /*transition: 0.5s;*/
   padding-top: 60px;
@@ -42,7 +55,6 @@ body {
 }
 
 .sidenav body {
-    background-color: black;
     color: white;
 }
 
