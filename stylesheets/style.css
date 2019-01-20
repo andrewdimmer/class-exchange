@@ -37,6 +37,10 @@ body {
     max-width: 450px;
 }
 
+.textbox {
+    width:100%;
+}
+
 /* Sidebar Styles */
 .sidenav {
   height: 100%;

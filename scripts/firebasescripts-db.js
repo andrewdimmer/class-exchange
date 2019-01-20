@@ -1,6 +1,7 @@
 // Initialize Firebase
 var db;
 var auth;
+var masterTID = "t-ECRMT";
 function initializeFirebase() {
     var config = {
         apiKey: "AIzaSyAP6CteQ8w8WiC71Z071mrJ58xhO16WHxM",
@@ -30,6 +31,7 @@ function createClass(cID, classInfo, uID) {
             newClass.set(classInfo)
             .then(function() {
                 console.log("Document successfully written!");
+                console.log(uID);
                 var teacher = db.collection("users").doc(uID);
                 two = teacher.get().then(function(doc) {
                     if (doc.exists) {
