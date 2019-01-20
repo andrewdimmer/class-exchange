@@ -22,7 +22,7 @@
         <script>
             auth.onAuthStateChanged(function() {
                 console.log(auth.currentUser);
-                loadCurrentUser(auth.currentUser, [loadIndex_html]);
+                loadCurrentUser(auth.currentUser, [loadSidebarFromUser, loadIndex_html]);
             }, function(error) {
                 console.error(error);
             });
