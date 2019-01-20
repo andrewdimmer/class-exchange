@@ -305,3 +305,7 @@ h7 {
     padding: 2px;
     background-color: #FCFCFC;
 }
+
+.content h1 {
+    text-align: center;
+}
