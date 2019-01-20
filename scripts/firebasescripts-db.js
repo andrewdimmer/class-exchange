@@ -1,4 +1,6 @@
 // Initialize Firebase
+var db;
+var auth;
 function initializeFirebase() {
     var config = {
         apiKey: "AIzaSyAP6CteQ8w8WiC71Z071mrJ58xhO16WHxM",
@@ -9,24 +11,13 @@ function initializeFirebase() {
         messagingSenderId: "612257089466"
     };
     firebase.initializeApp(config);
+    auth = firebase.auth();
+    db = firebase.firestore();
 }
 
-// Ensures that firebase is initialized on all pages
 initializeFirebase();
 
-var db;
-function initializeDatabase() {
-    // Initialize Cloud Firestore through Firebase
-    db = firebase.firestore();
-
-    // Disable deprecated features
-    db.settings({
-      timestampsInSnapshots: true
-    });
-}
-initializeDatabase();
-
-function createClass(userEmail, cID, classInfo) {
+function createClass(cID, classInfo, uID) {
     var newClass = db.collection("classes").doc(cID);
     console.log(cID + " reserved");
     var two;
@@ -39,7 +30,7 @@ function createClass(userEmail, cID, classInfo) {
             newClass.set(classInfo)
             .then(function() {
                 console.log("Document successfully written!");
-                var teacher = db.collection("users").doc(userEmail);
+                var teacher = db.collection("users").doc(uID);
                 two = teacher.get().then(function(doc) {
                     if (doc.exists) {
                         // console.log("Document data:", doc.data());
@@ -172,28 +163,28 @@ function createPost(pID, postInfo, parentDoc, parentField) {
     return Promise.all([one,two]);
 }
 
-function joinClassFirebase(classID, joinCode, userEmail) {
+function joinClassFirebase(classID, joinCode, uID) {
     var classToJoin = db.collection("classes").doc("c-" + classID);
     var two;
     var one = classToJoin.get().then(function(doc) {
         if (doc.exists) {
-            console.log("Adding " + userEmail + " to c-" + classID);
+            console.log("Adding " + uID + " to c-" + classID);
             classData = doc.data();
             if (classData.joinCode != joinCode) {
                 return 2;
             }
-            if (classData.users.indexOf(userEmail) > -1) {
+            if (classData.users.indexOf(uID) > -1) {
                 return 3;
             }
-            classData.users.push(userEmail);
+            classData.users.push(uID);
             classToJoin.set(classData)
             .then(function() {
                 console.log("Document successfully written!");
-                var user = db.collection("users").doc(userEmail);
+                var user = db.collection("users").doc(uID);
                 two = user.get().then(function(doc) {
                     if (doc.exists) {
                         // console.log("Document data:", doc.data());
-                        console.log("Adding c-" + classID + " to " + userEmail);
+                        console.log("Adding c-" + classID + " to " + uID);
                         userData = doc.data();
                         userData.classes.push("c-" + classID);
                         user.set(userData)
@@ -226,12 +217,12 @@ function joinClassFirebase(classID, joinCode, userEmail) {
     return Promise.all([one,two]);
 }
 
-function followTopicFirebase(topicID, userEmail) {
-    var user = db.collection("users").doc(userEmail);
+function followTopicFirebase(topicID, uID) {
+    var user = db.collection("users").doc(uID);
     var one = user.get().then(function(doc) {
         if (doc.exists) {
             // console.log("Document data:", doc.data());
-            console.log("Adding t-" + topicID + " to " + userEmail);
+            console.log("Adding t-" + topicID + " to " + uID);
             userData = doc.data();
             userData.classes.push("t-" + topicID);
             user.set(userData)
@@ -243,7 +234,7 @@ function followTopicFirebase(topicID, userEmail) {
             });
             return 0;
         } else {
-            console.log("Unable to find user " + userEmail);
+            console.log("Unable to find user " + uID);
             return 1;
         }
     }).catch(function(error) {
@@ -286,6 +277,22 @@ function getClassJSON(cID) {
 
 function getPostJSON(pID) {
     var post = db.collection("posts").doc(tID);
+    var one = post.get().then(function(doc) {
+        if (doc.exists) {
+            console.log("Document data:", doc.data());
+            return doc.data();
+        } else {
+            return null;
+        }
+        
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
+    });
+    return Promise.all([one]);
+}
+
+function getUserJSON(uID) {
+    var post = db.collection("users").doc(uID);
     var one = post.get().then(function(doc) {
         if (doc.exists) {
             console.log("Document data:", doc.data());

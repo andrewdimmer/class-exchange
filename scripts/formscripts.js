@@ -1,20 +1,20 @@
 function addClass() {
     var className = "Test Class"
     var classCategories = ["Homework", "Exams"];
-    var userEmail = "adimmer@oakland.edu";
+    var uID = "adimmer@oakland.edu";
     var cID = "c-" + generateID(5);
     var classInfo = {
         "id": cID,
         "name": className,
         "categoryName": classCategories,
         "announcements": [],
-        "users": [userEmail],
+        "users": [uID],
         "joinCode": Math.floor(Math.random()*10000)
     }
     for (var cat = 0; cat < classCategories.length; cat++) {
         classInfo["cat" + cat + "posts"] = [];
     }
-    var classCreated = createClass("adimmer@oakland.edu", cID, classInfo);
+    var classCreated = createClass(cID, classInfo, uID);
     console.log(classCreated);
     classCreated.then(function(results){
         if (results[0] == 0) {
@@ -76,7 +76,7 @@ function addTopic() {
 function addPost() {
     var postName = "Test Post";
     var postContent = "This is the content for the test post!";
-    var userEmail = "adimmer@oakland.edu";
+    var uID = "adimmer@oakland.edu";
     var parentDoc = "c-IH2BA";
     var parentField = "announcements";
     var pID = "p-" + generateID(10);
@@ -84,7 +84,7 @@ function addPost() {
         "id": pID,
         "title": postName,
         "content": postContent,
-        "poster": userEmail,
+        "user": uID,
         "dateTime": new Date(Date.now()).toJSON(),
         "resourceLinks": [],
         "youtubeLinks": [],
@@ -116,8 +116,8 @@ function generateID(length) {
 function joinClass() {
     var id = "4S62A";
     var joinCode = 6218;
-    var userEmail = "adimmer@oakland.edu";
-    var classJoined = joinClassFirebase(id, joinCode, userEmail);
+    var uID = "adimmer@oakland.edu";
+    var classJoined = joinClassFirebase(id, joinCode, uID);
     console.log(classJoined);
     classJoined.then(function(results){
         if (results[0] == 0) {
@@ -136,8 +136,8 @@ function joinClass() {
     })    
 }
 
-function followTopic(id, userEmail) {
-    var classJoined = followTopicFirebase(id, userEmail);
+function followTopic(id, uID) {
+    var classJoined = followTopicFirebase(id, uID);
     console.log(classJoined);
     classJoined.then(function(results){
         if (results[0] == 0) {

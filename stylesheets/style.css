@@ -204,3 +204,27 @@ h7 {
     border-style: solid
 }
 
+.profile-line {
+    overflow: auto;
+    padding-bottom: 10px;
+}
+
+#messages {
+    padding: 0px;
+}
+
+.message {
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+.message-good {
+    background: darkseagreen;
+    border-color: darkgreen;
+}
+
+.message-bad {
+    background: lightcoral;
+    border-color: darkred;
+}

@@ -14,8 +14,18 @@
         <script src="../scripts/loadscripts.js"></script>
     
         <!-- Import Firebase Scripts -->
-        <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase.js"></script>
-        <script src="../scripts/firebasescripts.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-firestore.js"></script>
+        <script src="../scripts/firebasescripts-db.js"></script>
+        <script src="../scripts/firebasescripts-auth.js"></script>
+        <script>
+            var user;
+            setTimeout(function(){
+                user = getUserJSON(auth.currentUser.uid);
+                console.log(userID);
+            }, 250);
+        </script>
     
         <!-- Import the messager scripts -->
         <script src="../scripts/messages.js"></script>
@@ -29,6 +39,7 @@
         <div id="container" style="width: 100%;">
             <div include-html="../templates/sidebar.html" id="sidenav" class="sidenav"></div>
             <div class="content">
+                <div id="messages"></div>
                 <p>This is test content.</p>
                 <p>This is more content.</p>
                 <p>This is test content.</p>
