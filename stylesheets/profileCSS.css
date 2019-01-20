@@ -4,3 +4,17 @@ display: inline-block;
 margin: auto
 }
 
+.btn-outline-info {
+    border-color: #86B8CC;
+    color: #86B8CC;
+    border-width: 2px;
+}
+
+.btn-outline-info:hover {
+    background-color: #86B8CC;
+    border-color: #86B8CC;
+}
+
+body {
+    background-color: #EDEDED;
+}

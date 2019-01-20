@@ -60,7 +60,7 @@
                 <form id="editNameForm" style="display: none;">
                     <div class="row">
                         <div class="col-sm-12 col-md-6 name">
-                            <input type="text" name="newName" id="newName" class="surroundSpace fullWidth" />
+                            <input type="text" name="newName" id="newName" class="surroundSpace fullWidth textStyle" />
                         </div>
                         <div class="col-sm-auto">
                             <input type="button" onclick="updateName();" value="Update" class="btn btn-outline-info surroundSpace" />
@@ -80,8 +80,8 @@
                 </div><br />
                 <form id="editEmailForm" style="display: none;">
                     <div class="row">
-                        <div class="col-sm-12 col-md-10">
-                            <input type="text" name="newEmail" id="newEmail" style="width: 100%;" class="surroundSpace fullWidth" />
+                        <div class="col-sm-12 col-md-6">
+                            <input type="text" name="newEmail" id="newEmail" style="width: 100%;" class="surroundSpace fullWidth textStyle" />
                         </div>
                         <div class="col-sm-auto">
                             <input type="button" onclick="updateEmail();" value="Update" class="btn btn-outline-info surroundSpace" /><input type="button" onclick="toggleEdit('Email');" value="Cancel" class="btn btn-outline-info surroundSpace" />
@@ -102,8 +102,8 @@
                 <form id="editPasswordForm" style="display: none;">
                     <div class="row">
                         <div class="col-sm-12 col-md-6">
-                            <input type="password" name="newPassword" id="newPassword" placeholder="New Password" class="surroundSpace fullWidth" />
-                            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" class="surroundSpace fullWidth" />
+                            <input type="password" name="newPassword" id="newPassword" placeholder="New Password" class="surroundSpace fullWidth textStyle" />
+                            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" class="surroundSpace fullWidth textStyle" />
                         </div>
                         <div class="col-sm-auto">
                             <input type="button" onclick="updatePassword();" value="Update" class="btn btn-outline-info surroundSpace" />
@@ -121,17 +121,21 @@
                     <strong>Role: </strong>
                     <span id="userRole"></span>
                 </div><br />
-                <form id="editRoleForm" style="display: none;">
-                    <select id="newRole" name="newRole" class="surroundSpace">
-                        <option value="Student">Student</option>
-                        <option value="Teacher">Teacher</option>
-                    </select><br />
-                    <input type="button" onclick="updateRole();" value="Update" class="btn btn-outline-info surroundSpace" />
-                    <input type="button" onclick="toggleEdit('Role');" value="Cancel" class="btn btn-outline-info surroundSpace" />
+                <form id="editRoleForm" style="display: none;" class="noScroll">
+                    <div class="col-sm-12 col-md-6">
+                        <select id="newRole" name="newRole" class="surroundSpace dropDown">
+                            <option value="Student">Student</option>
+                            <option value="Teacher">Teacher</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-auto">
+                        <input type="button" onclick="updateRole();" value="Update" class="btn btn-outline-info surroundSpace" />
+                        <input type="button" onclick="toggleEdit('Role');" value="Cancel" class="btn btn-outline-info surroundSpace" />
+                    </div>
                 </form>
             </div>
 
-            <div class="profile-line  contentBackground addPadding">
+            <div class="profile-line  contentBackground addPadding noScroll">
                 <div class="floatLeft">
                     <a id="editImageIcon">
                         <i class="far fa-edit"></i>
@@ -140,9 +144,15 @@
                     <span id="userImage"></span>
                 </div><br />
                 <form id="editImageForm" style="display: none;">
-                    <input type="file" name="newImage" id="newIamge" placeholder="New Profile Picture" class="surroundSpace" />
-                    <input type="button" onclick="updateImage();" value="Update" class="btn btn-outline-info surroundSpace" />
-                    <input type="button" onclick="toggleEdit('Image');" value="Cancel" class="btn btn-outline-info surroundSpace" />
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <input type="file" name="newImage" id="newIamge" placeholder="New Profile Picture" class="surroundSpace fileUpload fullWidth" />
+                        </div>
+                        <div class="col-sm-auto">
+                            <input type="button" onclick="updateImage();" value="Update" class="btn btn-outline-info surroundSpace" />
+                            <input type="button" onclick="toggleEdit('Image');" value="Cancel" class="btn btn-outline-info surroundSpace" />
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
