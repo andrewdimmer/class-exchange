@@ -10,6 +10,22 @@ function getInfo() {
         document.getElementById("userEmail").innerHTML = user.email;
         document.getElementById("newEmail").value = user.email;
         document.getElementById("userPassword").innerHTML = "********";
+        document.getElementById("userRole").innerHTML = user.role;
+        document.getElementById("newRole").value = user.role;
+        document.getElementById("userImage").innerHTML = user.imageName;
+        //Images
+        document.getElementById("editNameIcon").href = "#";
+        document.getElementById("editNameIcon").setAttribute("onclick", "toggleEdit('Name')");
+        document.getElementById("editEmailIcon").href = "#";
+        document.getElementById("editEmailIcon").setAttribute("onclick", "toggleEdit('Email')");
+        document.getElementById("editPasswordIcon").href = "#";
+        document.getElementById("editPasswordIcon").setAttribute("onclick", "toggleEdit('Password')");
+        if (!user.roleSet) {
+            document.getElementById("editRoleIcon").href = "#";
+            document.getElementById("editRoleIcon").setAttribute("onclick", "toggleEdit('Role')");
+        }
+        document.getElementById("editImageIcon").href = "#";
+        document.getElementById("editImageIcon").setAttribute("onclick", "toggleEdit('Image')");
     } else {
         // Error handling
         console.log("No user logged in");
@@ -18,6 +34,20 @@ function getInfo() {
         document.getElementById("userEmail").innerHTML = "";
         document.getElementById("newEmail").value = "";
         document.getElementById("userPassword").innerHTML = "";
+        document.getElementById("userRole").innerHTML = "";
+        document.getElementById("newRole").value = "";
+        document.getElementById("userImage").innerHTML = "";
+        //Images
+        document.getElementById("editNameIcon").removeAttribute("href");
+        document.getElementById("editEmailIcon").removeAttribute("href");
+        document.getElementById("editPasswordIcon").removeAttribute("href");
+        document.getElementById("editRoleIcon").removeAttribute("href");
+        document.getElementById("editImageIcon").removeAttribute("href");
+        document.getElementById("editNameIcon").removeAttribute("onclick");
+        document.getElementById("editEmailIcon").removeAttribute("onclick");
+        document.getElementById("editPasswordIcon").removeAttribute("onclick");
+        document.getElementById("editRoleIcon").removeAttribute("onclick");
+        document.getElementById("editImageIcon").removeAttribute("onclick");
         }
 }
 
@@ -122,6 +152,38 @@ function updatePassword() {
         // Mismatch Passwords
         addBadMessage("Warning: Passwords do not match. Please try again.");
     }
+}
+
+function updateRole() {
+    var newRole = document.getElementById("newRole").value;
+    
+    var DBUser = db.collection("users").doc(user.id)
+    DBUser.get().then(function(doc) {
+        if (doc.exists) {
+            // console.log("Document data:", doc.data());
+            console.log("Updating role for " + user.id);
+            userData = doc.data();
+            userData.role = newRole;
+            DBUser.set(userData)
+            .then(function() {
+                console.log("Document successfully written!");
+                loadCurrentUser(auth.currentUser, [getInfo]);
+                addGoodMessage("Role Updated Successfully");
+                toggleEdit("Role");
+            })
+            .catch(function(error) {
+                console.error("Error writing document: ", error);
+                addBadMessage(error);
+            });
+            return 0;
+        } else {
+            console.log("Unable to find user " + user.id);
+            addBadMessage("Unable to find user"+ user.id);
+        }
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
+        addBadMessage(error);
+    });
 }
 
 //Profile page display functions
