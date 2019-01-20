@@ -123,15 +123,17 @@
                     <span id="userRole"></span>
                 </div><br />
                 <form id="editRoleForm" style="display: none;" class="noScroll">
-                    <div class="col-sm-12 col-md-6">
-                        <select id="newRole" name="newRole" class="surroundSpace dropDown">
-                            <option value="Student">Student</option>
-                            <option value="Teacher">Teacher</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-auto">
-                        <input type="button" onclick="updateRole();" value="Update" class="btn btn-outline-info surroundSpace" />
-                        <input type="button" onclick="toggleEdit('Role');" value="Cancel" class="btn btn-outline-info surroundSpace" />
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <select id="newRole" name="newRole" class="surroundSpace dropDown fullWidth">
+                                <option value="Student">Student</option>
+                                <option value="Teacher">Teacher</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-auto">
+                            <input type="button" onclick="updateRole();" value="Update" class="btn btn-outline-info surroundSpace" />
+                            <input type="button" onclick="toggleEdit('Role');" value="Cancel" class="btn btn-outline-info surroundSpace" />
+                        </div>
                     </div>
                 </form>
             </div>
