@@ -1,5 +1,5 @@
 body {
-    font-family: "Arial";
+    font-family: "Helvetica";
     --sidebar-bg: black;
     --primary-color: lightblue;
     --nav-text-color: black;
@@ -167,3 +167,40 @@ h7 {
 .inline {
     display: inline;
 }
+
+.homeTitle {
+    text-align: center;
+    background-color: #FCFCFC;
+    border-color: #DCECEF;
+    /*border-color: radial-gradient(#DCECEF, #EDEDED);*/
+    border-width: 3px;
+    border-radius: 15px;
+    border-style: solid;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    width: 95%; 
+    margin-left: 2.5%;
+    color: 0f0f0f;
+}
+
+.iconSpace {
+    margin-right: 1rem;
+}
+
+.center {
+    text-align: center;
+}
+
+.homeButtons {
+    margin-bottom: 1rem;
+}
+
+.content{
+    background-color: #FCFCFC;
+    border-color: #DCECEF;
+    /*border-color: radial-gradient(#DCECEF, #EDEDED);*/
+    border-width: 3px;
+    border-radius: 15px;
+    border-style: solid
+}
+
