@@ -260,3 +260,38 @@ h7 {
 .noScroll {
     overflow: hidden;
 }
+
+.textStyle {
+    border-color: #86B8CC;
+    color: #86B8CC;
+    border-style: solid;
+    border-radius: 8px;
+    border-width: 2px;
+    padding: 2px;
+    background-color: #FCFCFC;
+    
+}
+
+::placeholder {
+    color: #86B8CC;
+}
+
+.dropDown {
+    border-color: #86B8CC;
+    color: #86B8CC;
+    border-style: solid;
+    border-radius: 6px;
+    border-width: 2px;
+    padding: 2px;
+    background-color: #FCFCFC;
+}
+
+.fileUpload {S
+        border-color: #86B8CC;
+    color: #86B8CC;
+    border-style: solid;
+    border-radius: 6px;
+    border-width: 2px;
+    padding: 2px;
+    background-color: #FCFCFC;
+}
