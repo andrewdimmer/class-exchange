@@ -309,3 +309,15 @@ h7 {
 .content h1 {
     text-align: center;
 }
+
+.seperateDown {
+    margin-bottom: .5rem;
+}
+
+.seperateLeft {
+    margin-left: .5rem;
+}
+
+.seperateRight {
+    margin-right: .5rem;
+}
