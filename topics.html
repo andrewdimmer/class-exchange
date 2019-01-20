@@ -36,7 +36,7 @@
         <script src="../scripts/navbarscripts.js"></script>
         
         <!-- Import the Topics and Classes Scripts -->
-        <scripts src="../scripts/topicclassscripts.js"></scripts>
+        <script src="../scripts/topicclassscripts.js"></script>
     </head>
     
     <body class="background">
@@ -50,7 +50,9 @@
     </body>
     <footer>
         <script>
-            includeHTML();       
+            includeHTML();
+            loadTopicsPage();
+            window.onhashchange = loadTopicsPage;
         </script>
     </footer>
 </html>
