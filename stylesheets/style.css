@@ -1,8 +1,8 @@
 body {
     font-family: "Helvetica";
-    --sidebar-bg: black;
+    --sidebar-bg: #d6ebf2;
     --primary-color: lightblue;
-    --nav-text-color: black;
+    --nav-text-color: #0f0f0f;
     
     /* No text select */
     -webkit-touch-callout: none;
@@ -45,6 +45,7 @@ body {
   /*transition: 0.5s;*/
   display: none;
   color: white;
+  padding: 1.5%;
 }
 
 .sidenav body {
@@ -54,15 +55,16 @@ body {
 .sidenav h1 {
     font-size: 18pt;
     padding-left:5%;
+    color: #353e42;
 }
 
 .element {
     padding-left: 15%;
-    color: grey;
+    color: #6e838c;
 }
 
 .element:hover {
-    color: lightblue;
+    color: #596970;
 }
 
 /*This is the CSS from the post page.*/
@@ -149,11 +151,12 @@ h7 {
 }
 
 .content {
-  height: 100%;
-  width: 100%
-  float: left;
-  overflow-y: auto;
-  /*transition: 0.5s;*/
+    height: 100%;
+    width: 100%
+    float: left;
+    overflow-y: auto;
+    /*transition: 0.5s;*/
+    padding: 2.5%;
 }
 
 .floatRight {
