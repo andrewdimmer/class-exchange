@@ -323,3 +323,8 @@ h7 {
 .seperateRight {
     margin-right: .5rem;
 }
+
+.extraMargin {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
