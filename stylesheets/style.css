@@ -286,8 +286,18 @@ h7 {
     background-color: #FCFCFC;
 }
 
-.fileUpload {S
-        border-color: #86B8CC;
+.fileUpload {
+    border-color: #86B8CC;
+    color: #86B8CC;
+    border-style: solid;
+    border-radius: 6px;
+    border-width: 2px;
+    padding: 2px;
+    background-color: #FCFCFC;
+}
+
+.textArea {
+    border-color: #86B8CC;
     color: #86B8CC;
     border-style: solid;
     border-radius: 6px;
