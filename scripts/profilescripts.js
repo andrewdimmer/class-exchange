@@ -156,34 +156,38 @@ function updatePassword() {
 
 function updateRole() {
     var newRole = document.getElementById("newRole").value;
-    
-    var DBUser = db.collection("users").doc(user.id)
-    DBUser.get().then(function(doc) {
-        if (doc.exists) {
-            // console.log("Document data:", doc.data());
-            console.log("Updating role for " + user.id);
-            userData = doc.data();
-            userData.role = newRole;
-            DBUser.set(userData)
-            .then(function() {
-                console.log("Document successfully written!");
-                loadCurrentUser(auth.currentUser, [getInfo]);
-                addGoodMessage("Role Updated Successfully");
-                toggleEdit("Role");
-            })
-            .catch(function(error) {
-                console.error("Error writing document: ", error);
-                addBadMessage(error);
-            });
-            return 0;
-        } else {
-            console.log("Unable to find user " + user.id);
-            addBadMessage("Unable to find user"+ user.id);
-        }
-    }).catch(function(error) {
-        console.log("Error getting document:", error);
-        addBadMessage(error);
-    });
+    if (newRole.indexOf("Student") > -1 || newRole.indexOf("Teacher") > -1) {
+        var DBUser = db.collection("users").doc(user.id)
+        DBUser.get().then(function(doc) {
+            if (doc.exists) {
+                // console.log("Document data:", doc.data());
+                console.log("Updating role for " + user.id);
+                userData = doc.data();
+                userData.role = newRole;
+                userData.roleSet = true;
+                DBUser.set(userData)
+                .then(function() {
+                    console.log("Document successfully written!");
+                    loadCurrentUser(auth.currentUser, [getInfo]);
+                    addGoodMessage("Role Updated Successfully");
+                    toggleEdit("Role");
+                })
+                .catch(function(error) {
+                    console.error("Error writing document: ", error);
+                    addBadMessage(error);
+                });
+                return 0;
+            } else {
+                console.log("Unable to find user " + user.id);
+                addBadMessage("Unable to find user"+ user.id);
+            }
+        }).catch(function(error) {
+            console.log("Error getting document:", error);
+            addBadMessage(error);
+        });
+    } else {
+        addBadMessage("Role must be either \"Student\" or \"Teacher\"!");
+    }
 }
 
 //Profile page display functions
