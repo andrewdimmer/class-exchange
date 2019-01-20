@@ -18,9 +18,12 @@ body {
     color: var(--nav-text-color);
 }
 
-.navbar h1 {
-    font-size: 15pt;
-    font-weight: 50;
+.active {
+    background-color: blue;
+}
+
+.nav-tabs {
+    text-align:center;
 }
 
 .profilepic {
