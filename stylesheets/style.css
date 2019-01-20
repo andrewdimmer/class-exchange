@@ -154,7 +154,7 @@ h7 {
 #container {
     width: 100%;
     overflow: auto;
-    height: calc(100vh - 72px);
+    height: calc(100vh - 76px);
 }
 
 .content {

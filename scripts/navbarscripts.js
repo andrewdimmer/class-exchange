@@ -66,7 +66,7 @@ function loadSidebarFromUser() {
             tempClasses.sort();
             for (var i = 0; i < tempClasses.length; i++) {
                 console.log(tempClasses[i]);
-                document.getElementById("userClasses").innerHTML += "<a href='../classes.html#" + tempClasses[i].substring(tempClasses[i].indexOf("c-"), tempClasses[i].length) + "' class='element'>" + tempClasses[i].substring(0, tempClasses[i].indexOf("-----")) + "</a>"
+                document.getElementById("userClasses").innerHTML += "<a href='../classes.html#" + tempClasses[i].substring(tempClasses[i].indexOf("c-"), tempClasses[i].length) + "' class='element'>" + tempClasses[i].substring(0, tempClasses[i].indexOf("-----")) + "</a>";
             }
         });
         
@@ -81,15 +81,8 @@ function loadSidebarFromUser() {
                     }
                 }
             }
-            var master = getTopicJSON(masterTID);
-            master.then(function(masterData) {
-                var masterTemp = [];
-                for (var i = 0; i < masterData[0].subTopics.length; i++) {
-                    if (tempTopics.indexOf(masterData[0].subTopics[i]) > -1) {
-                        
-                    }
-                }
-            });
+            document.getElementById("userTopics").id = masterTID + "_sub";
+            printSidebarTopics(masterTID, tempTopics)
             //-------------------------------------------
             /*tempTopics.sort();
             for (var i = 0; i < tempClasses.length; i++) {
@@ -122,4 +115,40 @@ function getSubTopics(listOfTopicIDs) {
         promises.push(getTopicJSON(listOfTopicIDs[i]));
     }
     return Promise.all(promises);
+}
+
+function printSidebarTopics(parentID, listToInclude) {
+    var promise1 = getTopicJSON(parentID);
+    promise1.then(function(parentData) {
+        var childTemp = [];
+        for (var i = 0; i < parentData[0].subTopics.length; i++) {
+            if (listToInclude.indexOf(parentData[0].subTopics[i]) > -1) {
+                childTemp.push(parentData[0].subTopics[i]);
+            }
+        }
+        console.log(childTemp);
+        
+        var alphaOrder = [];
+        var allData = [];
+        var promise2 = getSubTopics(childTemp);
+        promise2.then(function(topics) {
+            for (var m = 0; m < topics.length; m++) {
+                alphaOrder.push(topics[m][0].name + "-----" + topics[m][0].id + "=====" + m);
+                allData.push(topics[m][0]);
+            }
+            alphaOrder.sort();
+            console.log(alphaOrder);
+            for (var i = 0; i < alphaOrder.length; i++) {
+                console.log(alphaOrder[i]);
+                document.getElementById(parentID + "_sub").innerHTML += "<a href='../topics.html#" + alphaOrder[i].substring(alphaOrder[i].indexOf("t-"), alphaOrder[i].indexOf("=====")) + "' class='element'>" + alphaOrder[i].substring(0, alphaOrder[i].indexOf("-----")) + "</a>";
+                var oldIndex = alphaOrder[i].substring(alphaOrder[i].lastIndexOf("=")+1, alphaOrder[i].length);
+                console.log(oldIndex);
+                console.log(allData);
+                if (allData[parseInt(oldIndex)].type.indexOf("super") > -1) {
+                    document.getElementById(parentID + "_sub").innerHTML += "<div id='" + alphaOrder[i].substring(alphaOrder[i].indexOf("t-"), alphaOrder[i].indexOf("=====")) +"_sub'></div>";
+                    printSidebarTopics(alphaOrder[i].substring(alphaOrder[i].indexOf("t-"), alphaOrder[i].indexOf("=====")), listToInclude);
+                }
+            }
+        });
+    });
 }
