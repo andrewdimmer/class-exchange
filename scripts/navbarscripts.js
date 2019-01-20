@@ -47,3 +47,10 @@ function loadCurrentUser(authCurrentUser, callback) {
         });
     }
 }
+
+function loadSidebarFromUser() {
+    if (user == null) {
+        document.getElementById("userAccounts").innerHTML = "<a href='../login.html' class='element'>Login</a>";
+        docuent.getElementById("navProfilePicture").setAttribute("onclick", "function(){window.location.href='../login.html'}");
+    }
+}

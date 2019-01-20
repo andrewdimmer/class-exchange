@@ -25,7 +25,7 @@
         <script>
             auth.onAuthStateChanged(function() {
                 console.log(auth.currentUser);
-                loadCurrentUser(auth.currentUser, null);
+                loadCurrentUser(auth.currentUser, [loadSidebarFromUser]);
             }, function(error) {
                 console.error(error);
             });
