@@ -163,6 +163,29 @@ function createPost(pID, postInfo, parentDoc, parentField) {
     return Promise.all([one,two]);
 }
 
+function createUser(uID, userInfo) {
+    var newUser = db.collection("users").doc(uID);
+    var one = newUser.get().then(function(doc) {
+        if (doc.exists) {
+            console.log(uID + " exists");
+            return 1;
+        } else {
+            console.log(uID + " does not exist");
+            newUser.set(userInfo)
+            .then(function() {
+                console.log("Document successfully written!");
+            })
+            .catch(function(error) {
+                console.error("Error writing document: ", error);
+            });
+            return 0;
+        }
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
+    });
+    return Promise.all([one]);
+}
+
 function joinClassFirebase(classID, joinCode, uID) {
     var classToJoin = db.collection("classes").doc("c-" + classID);
     var two;

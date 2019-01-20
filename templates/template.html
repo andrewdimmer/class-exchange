@@ -20,11 +20,12 @@
         <script src="../scripts/firebasescripts-db.js"></script>
         <script src="../scripts/firebasescripts-auth.js"></script>
         <script>
-            var user;
-            setTimeout(function(){
-                user = getUserJSON(auth.currentUser.uid);
-                console.log(userID);
-            }, 250);
+            auth.onAuthStateChanged(function() {
+                console.log(auth.currentUser);
+                loadCurrentUser(auth.currentUser, null);
+            }, function(error) {
+                console.error(error);
+            });
         </script>
     
         <!-- Import the messager scripts -->

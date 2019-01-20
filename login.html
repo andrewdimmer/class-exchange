@@ -13,9 +13,23 @@
         <!-- Import on page load scripts -->
         <script src="../scripts/loadscripts.js"></script>
     
+        <!-- Import on page load scripts -->
+        <script src="../scripts/loadscripts.js"></script>
+    
         <!-- Import Firebase Scripts -->
-        <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase.js"></script>
-        <script src="../scripts/firebasescripts.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-firestore.js"></script>
+        <script src="../scripts/firebasescripts-db.js"></script>
+        <script src="../scripts/firebasescripts-auth.js"></script>
+        <script>
+            auth.onAuthStateChanged(function() {
+                console.log(auth.currentUser);
+                loadCurrentUser(auth.currentUser, null);
+            }, function(error) {
+                console.error(error);
+            });
+        </script>
     
         <!-- Import the messager scripts -->
         <script src="../scripts/messages.js"></script>

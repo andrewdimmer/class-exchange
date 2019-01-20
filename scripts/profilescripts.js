@@ -5,8 +5,8 @@ function getInfo() {
     document.getElementById("userPassword").innerHTML = "loading...";
     if (user != null) {
         console.log("Display user profile information");
-        document.getElementById("userName").innerHTML = user.displayName;
-        document.getElementById("newName").value = user.displayName;
+        document.getElementById("userName").innerHTML = user.name;
+        document.getElementById("newName").value = user.name;
         document.getElementById("userEmail").innerHTML = user.email;
         document.getElementById("newEmail").value = user.email;
         document.getElementById("userPassword").innerHTML = "********";
@@ -22,16 +22,40 @@ function getInfo() {
 }
 
 function updateName() {
-    var user = firebase.auth().currentUser;
+    var FBUser = auth.currentUser;
     var newName = document.getElementById("newName").value;
-
-    user.updateProfile({
+    
+    FBUser.updateProfile({
         displayName: newName,
     }).then(function() {
         // Update successful.
-        addGoodMessage("Name Updated Successfully");
-        getInfo();
-        toggleEditName();
+        var DBUser = db.collection("users").doc(user.id)
+        DBUser.get().then(function(doc) {
+            if (doc.exists) {
+                // console.log("Document data:", doc.data());
+                console.log("Updating name for " + user.id);
+                userData = doc.data();
+                userData.name = newName;
+                DBUser.set(userData)
+                .then(function() {
+                    console.log("Document successfully written!");
+                    loadCurrentUser(auth.currentUser, [getInfo]);
+                    addGoodMessage("Name Updated Successfully");
+                    toggleEdit("Name");
+                })
+                .catch(function(error) {
+                    console.error("Error writing document: ", error);
+                    addBadMessage(error);
+                });
+                return 0;
+            } else {
+                console.log("Unable to find user " + user.id);
+                addBadMessage("Unable to find user"+ user.id);
+            }
+        }).catch(function(error) {
+            console.log("Error getting document:", error);
+            addBadMessage(error);
+        });
     }).catch(function(error) {
         // An error happened.
         addBadMessage(error);
@@ -39,14 +63,40 @@ function updateName() {
 }
 
 function updateEmail() {
-    var user = firebase.auth().currentUser;
+    var FBUser = auth.currentUser;
     var newEmail = document.getElementById("newEmail").value;
-
-    user.updateEmail(newEmail).then(function() {
+    
+    FBUser.updateProfile({
+        email: newEmail,
+    }).then(function() {
         // Update successful.
-        addGoodMessage("Email Updated Successfully");
-        getInfo();
-        toggleEditEmail();
+        var DBUser = db.collection("users").doc(user.id)
+        DBUser.get().then(function(doc) {
+            if (doc.exists) {
+                // console.log("Document data:", doc.data());
+                console.log("Updating email for " + user.id);
+                userData = doc.data();
+                userData.email = newEmail;
+                DBUser.set(userData)
+                .then(function() {
+                    console.log("Document successfully written!");
+                    loadCurrentUser(auth.currentUser, [getInfo]);
+                    addGoodMessage("Email Updated Successfully");
+                    toggleEdit("Email");
+                })
+                .catch(function(error) {
+                    console.error("Error writing document: ", error);
+                    addBadMessage(error);
+                });
+                return 0;
+            } else {
+                console.log("Unable to find user " + user.id);
+                addBadMessage("Unable to find user"+ user.id);
+            }
+        }).catch(function(error) {
+            console.log("Error getting document:", error);
+            addBadMessage(error);
+        });
     }).catch(function(error) {
         // An error happened.
         addBadMessage(error);
@@ -63,7 +113,7 @@ function updatePassword() {
             // Update successful.
             addGoodMessage("Password Updated Successfully");
             getInfo();
-            toggleEditPassword();
+            toggleEdit("Password");
         }).catch(function(error) {
             // An error happened.
             addBadMessage(error);
@@ -75,38 +125,14 @@ function updatePassword() {
 }
 
 //Profile page display functions
-function toggleEditName() {
-    if (document.getElementById("editNameForm").style.display == "none") {
-        document.getElementById("editNameForm").style.display = "";
-        document.getElementById("editNameIcon").style.display = "none";
-        document.getElementById("userName").style.display = "none";
+function toggleEdit(element) {
+    if (document.getElementById("edit" + element + "Form").style.display == "none") {
+        document.getElementById("edit" + element + "Form").style.display = "";
+        document.getElementById("edit" + element + "Icon").style.display = "none";
+        document.getElementById("user" + element).style.display = "none";
     } else {
-        document.getElementById("editNameForm").style.display = "none";
-        document.getElementById("editNameIcon").style.display = "";
-        document.getElementById("userName").style.display = ""; 
-    }
-}
-
-function toggleEditEmail() {
-    if (document.getElementById("editEmailForm").style.display == "none") {
-        document.getElementById("editEmailForm").style.display = "";
-        document.getElementById("editEmailIcon").style.display = "none";
-        document.getElementById("userEmail").style.display = "none";
-    } else {
-        document.getElementById("editEmailForm").style.display = "none";
-        document.getElementById("editEmailIcon").style.display = "";
-        document.getElementById("userEmail").style.display = ""; 
-    }
-}
-
-function toggleEditPassword() {
-    if (document.getElementById("editPasswordForm").style.display == "none") {
-        document.getElementById("editPasswordForm").style.display = "";
-        document.getElementById("editPasswordIcon").style.display = "none";
-        document.getElementById("userPassword").style.display = "none";
-    } else {
-        document.getElementById("editPasswordForm").style.display = "none";
-        document.getElementById("editPasswordIcon").style.display = "";
-        document.getElementById("userPassword").style.display = ""; 
+        document.getElementById("edit" + element + "Form").style.display = "none";
+        document.getElementById("edit" + element + "Icon").style.display = "";
+        document.getElementById("user" + element).style.display = ""; 
     }
 }
