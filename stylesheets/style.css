@@ -238,3 +238,21 @@ h7 {
 .background {
     background-color: #EDEDED;
 }
+
+.addPadding {
+    padding: 2%;
+    margin: 1%;
+}
+
+.surroundSpace {
+    margin: 1%;
+    padding: 0px;
+}
+
+.fullWidth {
+    width: 100%;
+}
+
+.noScroll {
+    overflow: hidden;
+}

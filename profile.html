@@ -1,135 +1,143 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Template | ClassExchange</title>
-        
-        <!-- Our custom stylesheet -->
-        <link href="../stylesheets/style.css" rel="stylesheet" id="css">
-        
-        <!-- Bootstrap Imports -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-        
-        <!-- Import on page load scripts -->
-        <script src="../scripts/loadscripts.js"></script>
-    
-        <!-- Import Firebase Scripts -->
-        <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-firestore.js"></script>
-        <script src="../scripts/firebasescripts-db.js"></script>
-        <script src="../scripts/firebasescripts-auth.js"></script>
-        <script>
-            auth.onAuthStateChanged(function() {
+    <title>Template | ClassExchange</title>
+
+    <!-- Our custom stylesheet -->
+    <link href="../stylesheets/style.css" rel="stylesheet" id="css">
+
+    <!-- Bootstrap Imports -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="stylesheets/profileCSS.css" />
+
+    <!-- Import on page load scripts -->
+    <script src="../scripts/loadscripts.js"></script>
+
+    <!-- Import Firebase Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-firestore.js"></script>
+    <script src="../scripts/firebasescripts-db.js"></script>
+    <script src="../scripts/firebasescripts-auth.js"></script>
+    <script>
+        auth.onAuthStateChanged(function() {
                 console.log(auth.currentUser);
                 loadCurrentUser(auth.currentUser, [getInfo]);
             }, function(error) {
                 console.error(error);
             });
         </script>
-    
-        <!-- Import the messager scripts -->
-        <script src="../scripts/messages.js"></script>
-        
-        <!-- Import navbar scripts -->
-        <script src="../scripts/navbarscripts.js"></script>
-        
-        <!-- Import FontAwesome Edit Icon -->
-        <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js" integrity="sha384-EIHISlAOj4zgYieurP0SdoiBYfGJKkgWedPHH4jCzpCXLmzVsw1ouK59MuUtP4a1" crossorigin="anonymous"></script>
-        
-        <!-- Import profile scripts -->
-        <script src="../scripts/profilescripts.js"></script>
-    </head>
-    
-    <body>
-        <div include-html="../templates/navbar.html"></div>
-        <div id="container" style="width: 100%;">
-            <div include-html="../templates/sidebar.html" id="sidenav" class="sidenav"></div>
-            <div class="content">
-                <div id="messages"></div>
-                <h1>Profile</h1>
-                <div class="profile-line">
-                    <div class="floatLeft">
-                        <a id="editNameIcon" href="#" onclick="toggleEdit('Name');">
-                            <i class="far fa-edit"></i>
-                        </a>
-                        <strong>Name: </strong>
-                        <span id="userName"></span>
-                    </div>
-                    <form id="editNameForm" class="floatLeft" style="display: none;">
-                        <input type="text" name="newName" id="newName"/>
-                        <input type="button" onclick="updateName();" value="Update"/><input type="button" onclick="toggleEdit('Name');" value="Cancel"/>
-                    </form>
-                </div>
 
-                <div class="profile-line">
-                    <div class="floatLeft">
-                        <a id="editEmailIcon" href="#" onclick="toggleEdit('Email');">
-                            <i class="far fa-edit"></i>
-                        </a>
-                        <strong>Email: </strong>
-                        <span id="userEmail"></span>
+    <!-- Import the messager scripts -->
+    <script src="../scripts/messages.js"></script>
+
+    <!-- Import navbar scripts -->
+    <script src="../scripts/navbarscripts.js"></script>
+
+    <!-- Import FontAwesome Edit Icon -->
+    <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js" integrity="sha384-EIHISlAOj4zgYieurP0SdoiBYfGJKkgWedPHH4jCzpCXLmzVsw1ouK59MuUtP4a1" crossorigin="anonymous"></script>
+
+    <!-- Import profile scripts -->
+    <script src="../scripts/profilescripts.js"></script>
+</head>
+
+<body>
+    <div include-html="../templates/navbar.html"></div>
+    <div id="container" style="width: 100%;">
+        <div include-html="../templates/sidebar.html" id="sidenav" class="sidenav"></div>
+        <div class="content">
+            <div id="messages"></div>
+            <h1 class="center">Profile</h1>
+            <div class="profile-line contentBackground addPadding noScroll">
+                <div class="floatLeft">
+                    <a id="editNameIcon" href="#" onclick="toggleEdit('Name');">
+                        <i class="far fa-edit"></i>
+                    </a>
+                    <strong>Name: </strong>
+                    <span id="userName"></span>
+                </div><br />
+                <form id="editNameForm" style="display: none;">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 name">
+                            <input type="text" name="newName" id="newName" class="surroundSpace fullWidth" />
+                        </div>
+                        <div class="col-sm-auto">
+                            <input type="button" onclick="updateName();" value="Update" class="btn btn-outline-info surroundSpace"  />
+                            <input type="button" onclick="toggleEdit('Name');" value="Cancel" class="btn btn-outline-info surroundSpace"  />
+                        </div>
                     </div>
-                    <form id="editEmailForm" class="floatLeft" style="display: none;">
-                        <input type="text" name="newEmail" id="newEmail" style="width: 300px;"/>
-                        <input type="button" onclick="updateEmail();" value="Update"/><input type="button" onclick="toggleEdit('Email');" value="Cancel"/>
-                    </form>
-                </div>
-                
-                <div class="profile-line">
-                    <div class="floatLeft">
-                        <a id="editPasswordIcon" href="#" onclick="toggleEdit('Password');">
-                            <i class="far fa-edit"></i>
-                        </a>
-                        <strong>Password: </strong>
-                        <span id="userPassword"></span>
-                    </div>
-                    <form id="editPasswordForm" class="floatLeft" style="display: none;">
-                        <input type="password" name="newPassword" id="newPassword" placeholder="New Password"/>
-                        <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password"/>
-                        <input type="button" onclick="updatePassword();" value="Update"/>
-                        <input type="button" onclick="toggleEdit('Password');" value="Cancel"/>
-                    </form>
-                </div>
-                
-                <div class="profile-line">
-                    <div class="floatLeft">
-                        <a id="editRoleIcon" href="#" onclick="toggleEdit('Role');">
-                            <i class="far fa-edit"></i>
-                        </a>
-                        <strong>Role: </strong>
-                        <span id="userRole"></span>
-                    </div>
-                    <form id="editRoleForm" class="floatLeft" style="display: none;">
-                        <select id="newRole" name="newRole">
-                            <option value="Student">Student</option>
-                            <option value="Teacher">Teacher</option>
-                        </select>
-                        <input type="button" onclick="updateRole();" value="Update"/>
-                        <input type="button" onclick="toggleEdit('Role');" value="Cancel"/>
-                    </form>
-                </div>
-                
-                <div class="profile-line">
-                    <div class="floatLeft">
-                        <a id="editImageIcon" href="#" onclick="toggleEdit('Image');">
-                            <i class="far fa-edit"></i>
-                        </a>
-                        <strong>Profile Picture: </strong>
-                        <span id="userImage"></span>
-                    </div>
-                    <form id="editImageForm" class="floatLeft" style="display: none;">
-                        <input type="file" name="newImage" id="newIamge" placeholder="New Profile Picture"/>
-                        <input type="button" onclick="updateImage();" value="Update"/>
-                        <input type="button" onclick="toggleEdit('Image');" value="Cancel"/>
-                    </form>
-                </div>
+                </form>
+            </div>
+
+            <div class="profile-line contentBackground addPadding">
+                <div class="floatLeft">
+                    <a id="editEmailIcon" href="#" onclick="toggleEdit('Email');">
+                        <i class="far fa-edit"></i>
+                    </a>
+                    <strong>Email: </strong>
+                    <span id="userEmail"></span>
+                </div><br />
+                <form id="editEmailForm" class="floatLeft" style="display: none;">
+                    <input type="text" name="newEmail" id="newEmail" style="width: 300px;" class="surroundSpace" />
+                    <input type="button" onclick="updateEmail();" value="Update" class="btn btn-outline-info surroundSpace" /><input type="button" onclick="toggleEdit('Email');" value="Cancel" class="btn btn-outline-info surroundSpace" />
+                </form>
+            </div>
+
+            <div class="profile-line contentBackground addPadding">
+                <div class="floatLeft">
+                    <a id="editPasswordIcon" href="#" onclick="toggleEdit('Password');">
+                        <i class="far fa-edit"></i>
+                    </a>
+                    <strong>Password: </strong>
+                    <span id="userPassword"></span>
+                </div><br />
+                <form id="editPasswordForm" class="floatLeft" style="display: none;">
+                    <input type="password" name="newPassword" id="newPassword" placeholder="New Password" class="surroundSpace" />
+                    <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" class="surroundSpace" />
+                    <input type="button" onclick="updatePassword();" value="Update" class="btn btn-outline-info surroundSpace" />
+                    <input type="button" onclick="toggleEdit('Password');" value="Cancel" class="btn btn-outline-info surroundSpace" />
+                </form>
+            </div>
+
+            <div class="profile-line  contentBackground addPadding">
+                <div class="floatLeft">
+                    <a id="editRoleIcon" href="#" onclick="toggleEdit('Role');">
+                        <i class="far fa-edit"></i>
+                    </a>
+                    <strong>Role: </strong>
+                    <span id="userRole"></span>
+                </div><br />
+                <form id="editRoleForm" class="floatLeft" style="display: none;">
+                    <select id="newRole" name="newRole" class="surroundSpace">
+                        <option value="Student">Student</option>
+                        <option value="Teacher">Teacher</option>
+                    </select>
+                    <input type="button" onclick="updateRole();" value="Update" class="btn btn-outline-info surroundSpace" />
+                    <input type="button" onclick="toggleEdit('Role');" value="Cancel" class="btn btn-outline-info surroundSpace" />
+                </form>
+            </div>
+
+            <div class="profile-line  contentBackground addPadding">
+                <div class="floatLeft">
+                    <a id="editImageIcon" href="#" onclick="toggleEdit('Image');">
+                        <i class="far fa-edit"></i>
+                    </a>
+                    <strong>Profile Picture: </strong>
+                    <span id="userImage"></span>
+                </div><br />
+                <form id="editImageForm" class="floatLeft" style="display: none;">
+                    <input type="file" name="newImage" id="newIamge" placeholder="New Profile Picture" class="surroundSpace" />
+                    <input type="button" onclick="updateImage();" value="Update" class="btn btn-outline-info surroundSpace" />
+                    <input type="button" onclick="toggleEdit('Image');" value="Cancel" class="btn btn-outline-info surroundSpace" />
+                </form>
             </div>
         </div>
-    </body>
-    <footer>
-        <script>
-            includeHTML();
-        </script>
-    </footer>
+    </div>
+</body>
+<footer>
+    <script>
+        includeHTML();
+    </script>
+</footer>
 </html>
