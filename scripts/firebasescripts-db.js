@@ -272,7 +272,7 @@ function getTopicJSON(tID) {
     var topic = db.collection("topics").doc(tID);
     var one = topic.get().then(function(doc) {
         if (doc.exists) {
-            console.log("Document data:", doc.data());
+            // console.log("Document data:", doc.data());
             return doc.data();
         } else {
             return null;
@@ -288,7 +288,7 @@ function getClassJSON(cID) {
     var classToGet = db.collection("classes").doc(cID);
     var one = classToGet.get().then(function(doc) {
         if (doc.exists) {
-            console.log("Document data:", doc.data());
+            // console.log("Document data:", doc.data());
             return doc.data();
         } else {
             return null;
@@ -304,14 +304,14 @@ function getPostJSON(pID) {
     var post = db.collection("posts").doc(tID);
     var one = post.get().then(function(doc) {
         if (doc.exists) {
-            console.log("Document data:", doc.data());
+            // console.log("Document data:", doc.data());
             return doc.data();
         } else {
             return null;
         }
         
     }).catch(function(error) {
-        console.log("Error getting document:", error);
+        // console.log("Error getting document:", error);
     });
     return Promise.all([one]);
 }
@@ -320,7 +320,7 @@ function getUserJSON(uID) {
     var post = db.collection("users").doc(uID);
     var one = post.get().then(function(doc) {
         if (doc.exists) {
-            console.log("Document data:", doc.data());
+            // console.log("Document data:", doc.data());
             return doc.data();
         } else {
             return null;

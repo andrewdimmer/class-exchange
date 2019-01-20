@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
       
-    <link rel="stylesheet" href="../class-exchange/stylesheets/style.css"/>
+    <link rel="stylesheet" href="stylesheets/style.css"/>
 
     <title>postTemplate</title>
   </head>
@@ -25,22 +25,22 @@
                     </div>
                     
                     <div class="row">
-                      <div class="col-6">Class ID: </div>
-                      <div class="col-6">
-                        <textarea class = "textbox" id = "categories" rows = 1 placeholder= "xxxxx" maxlength="5"></textarea>
+                      <div class="col-4">Class ID: </div>
+                      <div class="col-auto">
+                        <input type="text" class = "textbox textArea seperateDown" id = "categories" placeholder= "xxxxx" maxlength="5">
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-6">Code: </div>
-                      <div class="col-6">
-                          <textarea class = "textbox" id = "categories" rows = 1 placeholder= "#" maxlength="5"></textarea>
+                      <div class="col-4">Code: </div>
+                      <div class="col-auto">
+                          <input type="text" class = "textbox textArea" id = "categories" placeholder= "#" maxlength="5">
                       </div>
                     </div>
                     
                     <br/>
                     <div class="buttons">
-                        <button type="button" class="btn btn-outline-info reply">Submit</button>
-                        <button type="button" class="btn btn-outline-info edit">Clear</button>
+                        <input type="button" class="btn btn-outline-info reply" value="Submit"/>
+                        <input type="button" class="btn btn-outline-info edit" value="Clear">
                     </div>
                 </div>
                 

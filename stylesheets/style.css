@@ -88,6 +88,8 @@ body {
     border-radius: 15px;
     width: 95%; 
     margin-left: 2.5%;
+    margin-top: 3%;
+    margin-bottom: 3%;
 }
 
 /*.linkBox {
@@ -154,7 +156,7 @@ h7 {
 #container {
     width: 100%;
     overflow: auto;
-    height: calc(100vh - 72px);
+    height: calc(100vh - 76px);
 }
 
 .content {
@@ -286,12 +288,43 @@ h7 {
     background-color: #FCFCFC;
 }
 
-.fileUpload {S
-        border-color: #86B8CC;
+.fileUpload {
+    border-color: #86B8CC;
     color: #86B8CC;
     border-style: solid;
     border-radius: 6px;
     border-width: 2px;
     padding: 2px;
     background-color: #FCFCFC;
+}
+
+.textArea {
+    border-color: #86B8CC;
+    color: #86B8CC;
+    border-style: solid;
+    border-radius: 6px;
+    border-width: 2px;
+    padding: 2px;
+    background-color: #FCFCFC;
+}
+
+.content h1 {
+    text-align: center;
+}
+
+.seperateDown {
+    margin-bottom: .5rem;
+}
+
+.seperateLeft {
+    margin-left: .5rem;
+}
+
+.seperateRight {
+    margin-right: .5rem;
+}
+
+.extraMargin {
+    margin-top: 15px;
+    margin-bottom: 15px;
 }

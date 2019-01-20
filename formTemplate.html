@@ -7,40 +7,44 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link rel="stylesheet" href="formTemplate.css"/>
+    <link rel="stylesheet" href="formTemplate.css" />
+    <link rel="stylesheet" href="stylesheets/style.css" />
 
     <title>Form Template</title>
-  </head>
-  <body>
-    
+</head>
+
+<body>
+
     <!--The template starts here.-->
-    <div class="card">
+    <div class="card contentBackground extraMargin">
         <div class="card-body form">
-            <h4>Title</h4>
-            <input/>
-            <br/>
-            
-            <h4>Body</h4>
-            <textarea></textarea>
-            <br/>
-            
-            <h4>Resources</h4>
-            <input/>
-            <br/>
-            <h4>YouTube</h4>
-            <input/>
-            <br/>
-            <button>Post</button>
+            <h6 class="seperateDown">Title</h6>
+            <input class="textStyle fullWidth seperateDown" placeholder="Title your post here"/>
+            <br />
+
+            <h6 class="seperateDown">Body</h6>
+            <textarea class="textStyle fullWidth" placeholder="Type your post here"></textarea>
+            <br />
+
+            <h6 class="seperateDown">Links</h6>
+            <input class="textStyle fullWidth seperateDown" placeholder="Place comma seperated resource links here"/>
+            <br />
+
+            <!---<h6>YouTube</h6>--->
+            <input class="textStyle fullWidth " placeholder="Place comma seperated YouTube video links here"/>
+            <br />
+
+            <input type="button" class="btn btn-outline-info" value="Post" style="margin-top: .5rem" />
         </div>
     </div>
-      
-      
+
+
     <!--The template stops here.-->
-    
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-  </body>
+</body>
 </html>
