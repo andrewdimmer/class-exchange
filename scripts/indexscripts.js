@@ -10,7 +10,6 @@ function loadIndex_html() {
             addGoodMessage("Logged Out Successfully");
         }
     } else {
-        console.log(document);
         document.getElementById("loggedIn").style.display = "block";
         document.getElementById("loggedOut").style.display = "none";
         document.getElementById("messagesLoggedOut").innerHTML = "";
