@@ -1,3 +1,13 @@
+function toggleNewPostBox(id) {
+    if (document.getElementById(id + "_replyToggle").style.display.indexOf("block") > -1) {
+        document.getElementById(id + "_replyToggle").style.display = "none";
+        document.getElementById(id + "_postButton").style.display = "block";
+    } else {
+        document.getElementById(id + "_replyToggle").style.display = "block";
+        document.getElementById(id + "_postButton").style.display = "none";
+    }
+}
+
 function addClass() {
     var className = "Test Class"
     var classCategories = ["Homework", "Exams"];
@@ -74,23 +84,19 @@ function addTopic() {
     })
 }
 
-function addPost() {
-    var postName = "Test Post";
-    var postContent = "This is the content for the test post!";
-    var parentDoc = "c-IH2BA";
-    var parentField = "announcements";
+function addPost(parentID, parentField) {
     var pID = "p-" + generateID(10);
     var postInfo = {
         "id": pID,
-        "title": postName,
-        "content": postContent,
-        "user": user.id,
+        "title": document.getElementById(parentID + "_title").value,
+        "content": document.getElementById(parentID + "_content").value.split("\n\n"),
+        "user": user.name,
         "dateTime": new Date(Date.now()).toJSON(),
-        "resourceLinks": [],
-        "youtubeLinks": [],
+        "resourceLinks": document.getElementById(parentID + "_links").value.replace(" ","").split(","),
+        "youtubeLinks": document.getElementById(parentID + "_links").value.replace(" ","").split(","),
         "replies": []
     }
-    var postCreated = createPost(pID, postInfo, parentDoc, parentField);
+    var postCreated = createPost(pID, postInfo, parentID, parentField);
     console.log(postCreated);
     postCreated.then(function(results){
         if (results[0] == 0) {

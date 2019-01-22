@@ -301,7 +301,7 @@ function getClassJSON(cID) {
 }
 
 function getPostJSON(pID) {
-    var post = db.collection("posts").doc(tID);
+    var post = db.collection("posts").doc(pID);
     var one = post.get().then(function(doc) {
         if (doc.exists) {
             // console.log("Document data:", doc.data());
